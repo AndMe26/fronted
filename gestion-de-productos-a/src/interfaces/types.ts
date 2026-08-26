@@ -1,6 +1,6 @@
 export type role = "user" | "admin"
 
-export interface user {
+export interface User {
 
     id: number;
     name: string;
@@ -23,14 +23,14 @@ export interface product {
     descripcion?: string;
     price: number;
     stock: number;
-    imageUrl?: string;
+    imageUrl?: string[];
     category: category;
     categoryId: number;
 }
 
 export interface AuthRespose {
     accesToken: string;
-    user: user;
+    user: User;
 }
 
 export interface ResponsePageProduct<T> {
@@ -42,18 +42,27 @@ export interface ResponsePageProduct<T> {
     totalpages: number;
 }
 
-export type ApiErrorType = "forbidden" | "validation " | "unauthorized" | "internal server error" | "network"| "conflict" | "not_found" | "unknown";
+export interface ProductQueryParams {
+    search?: string;
+    categoryId?: number;
+    page?: number;
+    limit?: number;
+}
+
+
+
+export type ApiErrorType = "forbidden" | "validation" | "unauthorized" | "internal server error" | "network" | "conflict" | "not_found" | "unknown";
 
 export class ApiError extends Error {
     type: ApiErrorType;
     status?: number;
     details?: unknown;
 
-    constructor(message: string, type: ApiErrorType, status?: number, details?: unknown ){
+    constructor(message: string, type: ApiErrorType, status?: number, details?: unknown) {
         super(message);
         this.name = "ApiErrorType",
-        this.type = type,
-        this.status = status,
-        this.details = details
+            this.type = type,
+            this.status = status,
+            this.details = details
     }
 }
