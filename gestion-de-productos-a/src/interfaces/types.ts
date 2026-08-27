@@ -1,14 +1,14 @@
-export type role = "user" | "admin"
+export type Role = "user" | "admin"
 
 export interface User {
 
     id: number;
     name: string;
     email: string;
-    rol: string;
+    role: string;
 }
 
-export interface category {
+export interface Category {
 
     id: number;
     name: string;
@@ -16,7 +16,7 @@ export interface category {
 }
 
 
-export interface product {
+export interface Product {
 
     id: number;
     name: string;
@@ -24,16 +24,16 @@ export interface product {
     price: number;
     stock: number;
     imageUrl?: string[];
-    category: category;
+    category: Category;
     categoryId: number;
 }
 
-export interface AuthRespose {
-    accesToken: string;
+export interface AuthResponse {
+    accessToken: string;
     user: User;
 }
 
-export interface ResponsePageProduct<T> {
+export interface PaginatedResponse<T> {
 
     data: T[];
     total: number,
